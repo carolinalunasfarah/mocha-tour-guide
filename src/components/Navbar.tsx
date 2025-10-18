@@ -29,13 +29,13 @@ const Navbar = () => {
             Mochas
           </Link>
           <Link
-            to="/food"
+            to="/reposteria"
             className={cn(
               "text-sm font-medium transition-colors",
-              isActive("/food") ? "text-foreground" : "text-accent"
+              isActive("/reposteria") ? "text-foreground" : "text-accent"
             )}
           >
-            Food
+            Repostería
           </Link>
         </div>
       </div>
