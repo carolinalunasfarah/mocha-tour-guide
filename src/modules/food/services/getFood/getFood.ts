@@ -1,0 +1,13 @@
+import { firestore } from '@/lib/clients/firebase/firebaseConfig';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { Food } from '../../domain/types';
+
+const getFood = async (): Promise<Food[]> => {
+  const foodRef = collection(firestore, 'food');
+  const q = query(foodRef, orderBy('createdAt', 'asc'));
+
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => doc.data() as Food);
+};
+
+export { getFood };
