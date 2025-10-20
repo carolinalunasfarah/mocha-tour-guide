@@ -28,6 +28,7 @@ const Mochas = () => {
               name={mocha.name}
               address={mocha.address}
               imgUrl={mocha.imgUrl}
+              domain="mochas"
             />
           ))}
         </div>
@@ -36,4 +37,4 @@ const Mochas = () => {
   );
 };
 
-export default Mochas;
+export { Mochas };

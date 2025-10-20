@@ -3,9 +3,15 @@ import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { LocationCardProps } from "./types";
 
-const LocationCard = ({ id, name, address, imgUrl }: LocationCardProps) => {
+const LocationCard = ({
+  id,
+  name,
+  address,
+  imgUrl,
+  domain = "mochas",
+}: LocationCardProps) => {
   return (
-    <Link to={`/mochas/${id}`}>
+    <Link to={`/${domain}/${id}`}>
       <Card className="group overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:bg-card-hover">
         <div className="aspect-[4/3] overflow-hidden">
           <img

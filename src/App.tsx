@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // pages
 import { Home } from "./pages/Home";
-import Mochas from "./pages/Mochas";
-import Food from "./pages/Food";
-import LocationDetail from "./pages/LocationDetail";
+import { Mochas } from "./pages/Mochas";
+import { Food } from "./pages/Food";
+import { LocationDetail } from "./pages/LocationDetail";
 import { NotFound } from "./pages/NotFound";
 
 // components
@@ -20,8 +20,7 @@ const App = () => (
         <Route path="/" element={<Home />} />
         <Route path="/mochas" element={<Mochas />} />
         <Route path="/reposteria" element={<Food />} />
-        <Route path="/mocha/:id" element={<LocationDetail />} />
-        <Route path="/reposteria/:id" element={<LocationDetail />} />
+        <Route path="/:domain/:id" element={<LocationDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
