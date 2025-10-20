@@ -4,10 +4,13 @@ import { Mocha } from '../../domain/types';
 
 const getMochas = async (): Promise<Mocha[]> => {
   const mochasRef = collection(firestore, 'mochas');
-  const q = query(mochasRef, orderBy('createdAt', 'asc'));
+  const q = query(mochasRef, orderBy('createdAt', 'desc'));
 
   const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => doc.data() as Mocha);
+  return snapshot.docs.map((doc) => {
+    const data = doc.data() as Mocha;
+    return { id: doc.id, ...data };
+  });
 };
 
 export { getMochas };

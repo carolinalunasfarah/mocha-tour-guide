@@ -28,6 +28,7 @@ const Food = () => {
               name={food.name}
               address={food.address}
               imgUrl={food.imgUrl}
+              domain="reposteria"
             />
           ))}
         </div>
@@ -36,4 +37,4 @@ const Food = () => {
   );
 };
 
-export default Food;
+export { Food };

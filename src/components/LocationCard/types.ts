@@ -3,6 +3,7 @@ type LocationCardProps = {
     name: string;
     address: string;
     imgUrl: string;
+    domain: "mochas" | "reposteria";
 }
 
 export type { LocationCardProps };

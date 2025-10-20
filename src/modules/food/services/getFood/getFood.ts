@@ -4,10 +4,13 @@ import { Food } from '../../domain/types';
 
 const getFood = async (): Promise<Food[]> => {
   const foodRef = collection(firestore, 'food');
-  const q = query(foodRef, orderBy('createdAt', 'asc'));
+  const q = query(foodRef, orderBy('createdAt', 'desc'));
 
   const snapshot = await getDocs(q);
-  return snapshot.docs.map(doc => doc.data() as Food);
+  return snapshot.docs.map((doc) => {
+    const data = doc.data() as Food;
+    return { id: doc.id, ...data };
+  });
 };
 
 export { getFood };
