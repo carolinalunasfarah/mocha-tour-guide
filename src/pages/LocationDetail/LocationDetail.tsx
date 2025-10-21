@@ -58,7 +58,7 @@ const LocationDetail = () => {
         <div className="flex items-center justify-between mb-6">
           <Button onClick={() => navigate(-1)} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
-            Volver a {isMochaDomain ? "Mochas" : "Food"}
+            Volver a {isMochaDomain ? "Mochas" : "Repostería"}
           </Button>
           <h1 className="text-4xl font-bold text-foreground">{data.name}</h1>
         </div>

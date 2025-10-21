@@ -1,6 +1,3 @@
-/* MapLibre GL Styles */
-/* Custom styles for MapLibre GL popups and components */
-
 /* Popup Content Styles */
 .maplibregl-popup-content {
   border: none !important;
@@ -17,22 +14,16 @@
 /* Close Button Styling */
 .maplibregl-popup-close-button {
   background: hsl(var(--background)) !important;
-  border: 1px solid hsl(var(--border)) !important;
   border-radius: 50% !important;
   width: 24px !important;
   height: 24px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
   color: hsl(var(--foreground)) !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
   cursor: pointer !important;
-  transition: all 0.2s ease !important;
+  margin: 0.3rem 0.3rem 0 !important;
 }
 
 .maplibregl-popup-close-button:hover {
-  background: hsl(var(--muted)) !important;
+  background: hsl(var(--secondary)) !important;
   color: hsl(var(--foreground)) !important;
 }
 
@@ -41,33 +32,12 @@
   background: hsl(var(--secondary)) !important;
   color: hsl(var(--secondary-foreground)) !important;
   border-radius: 6px !important;
-  padding: 8px 12px !important;
-  font-size: 12px !important;
-  font-family: inherit !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
+  padding: 0.3rem !important;
+  cursor: default !important;
 }
 
 .maplibregl-ctrl-attrib a {
   color: hsl(var(--secondary-foreground)) !important;
   text-decoration: underline !important;
-}
-
-.maplibregl-ctrl-attrib a:hover {
-  color: hsl(var(--secondary-foreground)) !important;
-  opacity: 0.8 !important;
-}
-
-/* Style the original info icon */
-.maplibregl-ctrl-attrib .maplibregl-ctrl-attrib-inner {
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-}
-
-.maplibregl-ctrl-attrib .maplibregl-ctrl-attrib-inner img {
-  filter: brightness(0) invert(1) !important;
-  width: 16px !important;
-  height: 16px !important;
+  margin-right: 1.5rem !important;
 }
