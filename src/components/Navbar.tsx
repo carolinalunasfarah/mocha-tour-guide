@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
           <img
-            src="/logo-cream.png"
+            src="/icons/logo-cream.png"
             alt="Mocha tour logo"
             className="h-10 w-10 transition-transform group-hover:rotate-12"
           />
@@ -23,7 +23,9 @@ const Navbar = () => {
             to="/mochas"
             className={cn(
               "text-sm font-medium transition-colors",
-              isActive("/mochas") ? "text-foreground" : "text-accent"
+              isActive("/mochas")
+                ? "text-accent font-semibold"
+                : "text-foreground"
             )}
           >
             Mochas
@@ -32,7 +34,9 @@ const Navbar = () => {
             to="/reposteria"
             className={cn(
               "text-sm font-medium transition-colors",
-              isActive("/reposteria") ? "text-foreground" : "text-accent"
+              isActive("/reposteria")
+                ? "text-accent font-semibold"
+                : "text-foreground"
             )}
           >
             Repostería

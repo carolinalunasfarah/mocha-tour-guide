@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import heroImage from "/hero-mocha.jpg";
-import { Coffee, UtensilsCrossed } from "lucide-react";
+import heroImage from "/images/hero-mocha.jpg";
+import { UtensilsCrossed } from "lucide-react";
 
 const Home = () => {
   return (
@@ -27,16 +27,16 @@ const Home = () => {
           <div className="flex gap-4 justify-center flex-wrap">
             <Link to="/mochas">
               <Button size="lg" variant="secondary" className="gap-2">
-                <Coffee className="h-5 w-5" />
+                <img
+                  src="/icons/logo-white.png"
+                  alt="Mocha Tour logo"
+                  className="h-6 w-6"
+                />
                 Explorar Mochas
               </Button>
             </Link>
             <Link to="/reposteria">
-              <Button
-                size="lg"
-                variant="outline"
-                className="gap-2 bg-white/10 border-white/30 text-white hover:bg-white/20"
-              >
+              <Button size="lg" className="gap-2">
                 <UtensilsCrossed className="h-5 w-5" />
                 Explorar Repostería
               </Button>
