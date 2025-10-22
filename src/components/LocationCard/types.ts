@@ -4,6 +4,7 @@ type LocationCardProps = {
     address: string;
     imgUrl: string;
     domain: "mochas" | "reposteria";
+    rating: number;
 }
 
 export type { LocationCardProps };

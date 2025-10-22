@@ -48,16 +48,17 @@ const Food = () => {
               address={foodItem.address}
               imgUrl={foodItem.imgUrl}
               domain="reposteria"
+              rating={foodItem.rating}
             />
           ))}
         </div>
-        {hasMore && (
-          <div className="flex justify-center mt-8">
-            <Button onClick={loadMore} variant="outline" size="lg">
+        <div className="flex justify-center mt-8 min-h-[60px]">
+          {hasMore && (
+            <Button onClick={loadMore} size="lg">
               Cargar más repostería
             </Button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { LocationCardProps } from "./types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState } from "react";
+import { StarRating } from "../StarRating";
 
 const LocationCard = ({
   id,
@@ -11,12 +12,13 @@ const LocationCard = ({
   address,
   imgUrl,
   domain = "mochas",
+  rating,
 }: LocationCardProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <Link to={`/${domain}/${id}`}>
-      <Card className="group overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:bg-card-hover">
+      <Card className="group overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:bg-card-hover border-none">
         <div className="aspect-[4/3] overflow-hidden">
           {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full" />}
           <img
@@ -36,9 +38,12 @@ const LocationCard = ({
           <h3 className="font-semibold text-lg mb-2 text-foreground group-hover:text-accent transition-colors">
             {name}
           </h3>
-          <div className="flex items-start gap-2 text-sm text-muted-foreground">
-            <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-            <p>{address}</p>
+          <div className="flex items-start gap-2 text-sm text-muted-foreground mb-2">
+            <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 text-foreground" />
+            <p className="text-foreground">{address}</p>
+          </div>
+          <div className="flex justify-end gap-2 text-sm text-muted-foreground">
+            <StarRating rating={rating} />
           </div>
         </CardContent>
       </Card>
