@@ -93,7 +93,7 @@ const LocationMap = ({
   return (
     <div
       ref={mapRef}
-      className={cn("w-full h-[400px] rounded-lg overflow-hidden", className)}
+      className={cn("w-full h-[450px] rounded-lg overflow-hidden", className)}
     />
   );
 };

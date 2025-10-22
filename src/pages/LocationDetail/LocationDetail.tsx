@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useGetMochaById } from "@/modules/mochas/hooks/useGetMochaById";
 import { useGetFoodById } from "@/modules/food/hooks/useGetFoodById";
 import { LocationMap } from "@/components/LocationMap";
+import { StarRating } from "@/components/StarRating";
 
 const LocationDetail = () => {
   const { domain, id } = useParams<{
@@ -60,17 +61,19 @@ const LocationDetail = () => {
             <ArrowLeft className="h-4 w-4" />
             Volver a {isMochaDomain ? "Mochas" : "Repostería"}
           </Button>
-          <h1 className="text-4xl font-bold text-foreground">{data.name}</h1>
+          <h1 className="text-4xl font-bold text-foreground cursor-default">
+            {data.name}
+          </h1>
         </div>
 
         <div className="space-y-8">
           <div className="grid grid-cols-3 gap-8">
             <div className="col-span-1">
-              <div className="h-[400px] overflow-hidden rounded-lg">
+              <div className="h-[450px] overflow-hidden rounded-lg">
                 <img
                   src={data.imgUrl}
                   alt={data.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center[-80%]"
                 />
               </div>
             </div>
@@ -83,11 +86,16 @@ const LocationDetail = () => {
           </div>
 
           <div className="space-y-6">
-            <div className="flex items-start gap-2 text-muted-foreground">
-              <MapPin className="h-5 w-5 mt-1 flex-shrink-0" />
-              <p className="text-lg">{data.address}</p>
+            <div className="flex items-center justify-between">
+              <div className="flex items-start gap-2 text-foreground">
+                <MapPin className="h-5 w-5 mt-1 flex-shrink-0" />
+                <p className="text-lg cursor-default">{data.address}</p>
+              </div>
+              <div className="flex items-start gap-2 text-foreground">
+                <StarRating rating={data.rating} />
+              </div>
             </div>
-            <p className="text-lg text-foreground leading-relaxed">
+            <p className="text-lg text-accent leading-relaxed cursor-default">
               {data.description}
             </p>
           </div>

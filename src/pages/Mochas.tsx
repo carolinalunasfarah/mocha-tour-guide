@@ -48,16 +48,17 @@ const Mochas = () => {
               address={mocha.address}
               imgUrl={mocha.imgUrl}
               domain="mochas"
+              rating={mocha.rating}
             />
           ))}
         </div>
-        {hasMore && (
-          <div className="flex justify-center mt-8">
-            <Button onClick={loadMore} variant="outline" size="lg">
+        <div className="flex justify-center mt-8 min-h-[60px]">
+          {hasMore && (
+            <Button onClick={loadMore} size="lg">
               Cargar más mochas
             </Button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
