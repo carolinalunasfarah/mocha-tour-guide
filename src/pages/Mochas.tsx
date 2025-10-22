@@ -1,14 +1,33 @@
-import { LocationCard } from "@/components/LocationCard/LocationCard";
+import { LocationCard } from "@/components/LocationCard";
+import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { useGetMochas } from "@/modules/mochas/hooks/useGetMochas";
+import { usePagination } from "@/modules/shared/hooks/usePagination";
+import { Button } from "@/components/ui/button";
 
 const Mochas = () => {
   const { data: mochas = [], isLoading } = useGetMochas();
+  const {
+    paginatedData: paginatedMochas,
+    hasMore,
+    loadMore,
+  } = usePagination({
+    data: mochas,
+    initialLimit: 8,
+    increment: 8,
+  });
 
   if (isLoading) {
     return (
       <div className="min-h-screen pt-24 pb-12">
         <div className="container mx-auto px-4">
-          <div className="text-center">Loading mochas...</div>
+          <h1 className="text-3xl font-bold mb-8 text-foreground cursor-default">
+            Mochas recomendados
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <LocationCardSkeleton key={index} />
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -17,11 +36,11 @@ const Mochas = () => {
   return (
     <div className="min-h-screen pt-24 pb-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8 text-foreground">
+        <h1 className="text-3xl font-bold mb-8 text-foreground cursor-default">
           Mochas recomendados
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mochas.map((mocha) => (
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {paginatedMochas.map((mocha) => (
             <LocationCard
               key={mocha.id}
               id={mocha.id}
@@ -32,6 +51,13 @@ const Mochas = () => {
             />
           ))}
         </div>
+        {hasMore && (
+          <div className="flex justify-center mt-8">
+            <Button onClick={loadMore} variant="outline" size="lg">
+              Cargar más mochas
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

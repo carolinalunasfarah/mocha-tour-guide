@@ -2,6 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { LocationCardProps } from "./types";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useState } from "react";
 
 const LocationCard = ({
   id,
@@ -10,15 +12,24 @@ const LocationCard = ({
   imgUrl,
   domain = "mochas",
 }: LocationCardProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <Link to={`/${domain}/${id}`}>
       <Card className="group overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:bg-card-hover">
         <div className="aspect-[4/3] overflow-hidden">
+          {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full" />}
           <img
             src={imgUrl}
             alt={name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            width={400}
+            height={300}
+            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 transition-opacity duration-300 ${
+              isLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            onLoad={() => setIsLoaded(true)}
             loading="lazy"
+            decoding="async"
           />
         </div>
         <CardContent className="p-4">
