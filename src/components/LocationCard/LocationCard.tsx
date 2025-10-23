@@ -18,9 +18,11 @@ const LocationCard = ({
 
   return (
     <Link to={`/${domain}/${id}`}>
-      <Card className="group overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:bg-card-hover border-none">
-        <div className="aspect-[4/3] overflow-hidden">
-          {!isLoaded && <Skeleton className="absolute inset-0 w-full h-full" />}
+      <Card className="group overflow-hidden cursor-pointer transition-all duration-300 border-none">
+        <div className="aspect-[4/3] overflow-hidden relative">
+          {!isLoaded && (
+            <Skeleton className="absolute inset-0 w-full h-full z-10" />
+          )}
           <img
             src={imgUrl}
             alt={name}

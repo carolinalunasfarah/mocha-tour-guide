@@ -9,7 +9,7 @@ import { LocationDetail } from "./pages/LocationDetail";
 import { NotFound } from "./pages/NotFound";
 
 // components
-import Navbar from "./components/Navbar";
+import { Navbar } from "./components/Navbar";
 import { queryClient } from "./modules/core/api/queryClient";
 
 const App = () => (

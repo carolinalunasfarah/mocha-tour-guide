@@ -6,8 +6,7 @@ import { UtensilsCrossed } from "lucide-react";
 const Home = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[500px] md:h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
@@ -45,10 +44,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Description Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
+      <section className="py-10 md:py-20 bg-background">
+        <div className="px-4">
+          <div className="md:max-w-5xl mx-auto text-center">
             <h2 className="text-2xl md:text-4xl font-bold mb-6 text-foreground cursor-default">
               ¿Cómo nace el mocha tour?
             </h2>
@@ -58,7 +56,7 @@ const Home = () => {
               ciudad, leer, tomar un rico café y acompañarlo con algo dulce.
               <br />
               Hoy se transforma en esta pequeña guía para quienes disfruten del
-              mocha y la repostería. Hasta la fecha he visitado 26 cafeterías,
+              mocha y la repostería. Hasta la fecha he visitado 27 cafeterías,
               todas, excepto una, emplazadas en la comuna de Providencia en
               Santiago de Chile.
             </p>
