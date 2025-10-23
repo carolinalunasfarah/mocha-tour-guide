@@ -18,8 +18,8 @@ const Food = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-12">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8 text-foreground cursor-default">
+      <div className="px-4">
+        <h1 className="text-2xl md:text-3xl font-bold mb-8 text-foreground cursor-default">
           Repostería recomendada
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

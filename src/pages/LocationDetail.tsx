@@ -55,21 +55,21 @@ const LocationDetail = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-12">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-6">
+      <div className="px-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
           <Button onClick={() => navigate(-1)} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Volver a {isMochaDomain ? "Mochas" : "Repostería"}
           </Button>
-          <h1 className="text-4xl font-bold text-foreground cursor-default">
+          <h1 className="md:text-4xl text-2xl font-bold text-foreground cursor-default mt-4 md:mt-0">
             {data.name}
           </h1>
         </div>
 
         <div className="space-y-8">
-          <div className="grid grid-cols-3 gap-8">
+          <div className="flex flex-col md:flex-row md:grid md:grid-cols-3 gap-8">
             <div className="col-span-1">
-              <div className="h-[450px] overflow-hidden rounded-lg">
+              <div className="h-[300px] md:h-[450px] overflow-hidden rounded-lg">
                 <img
                   src={data.imgUrl}
                   alt={data.name}

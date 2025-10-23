@@ -15,7 +15,9 @@ const Navbar = () => {
             alt="Mocha tour logo"
             className="h-10 w-10 transition-transform group-hover:rotate-12"
           />
-          <span className="font-semibold text-lg text-primary">Mocha Tour</span>
+          <span className="text-base font-semibold md:text-lg text-primary">
+            Mocha Tour
+          </span>
         </Link>
 
         <div className="flex items-center gap-8">
@@ -47,4 +49,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export { Navbar };
