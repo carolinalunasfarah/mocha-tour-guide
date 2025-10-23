@@ -2,8 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "/images/hero-mocha.jpg";
 import { UtensilsCrossed } from "lucide-react";
+import { VisitedMap } from "@/components/VisitedMap";
+import { useGetVisited } from "@/modules/visited/hooks/useGetVisited";
 
 const Home = () => {
+  const { data: visitedLocations, isLoading } = useGetVisited();
+
   return (
     <div className="min-h-screen">
       <section className="relative h-[500px] md:h-screen flex items-center justify-center overflow-hidden">
@@ -47,7 +51,7 @@ const Home = () => {
       <section className="py-10 md:py-20 bg-background">
         <div className="px-4">
           <div className="md:max-w-5xl mx-auto text-center">
-            <h2 className="text-2xl md:text-4xl font-bold mb-6 text-foreground cursor-default">
+            <h2 className="text-2xl md:text-4xl font-bold mb-6 text-accent cursor-default">
               ¿Cómo nace el mocha tour?
             </h2>
             <p className="text-lg text-foreground leading-relaxed cursor-default">
@@ -61,6 +65,34 @@ const Home = () => {
               Santiago de Chile.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="py-10 pb-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 text-accent cursor-default">
+              Cafeterías visitadas
+            </h2>
+            <p className="text-lg text-foreground cursor-default">
+              Explora todas las cafeterías visitadas, ten en cuenta que el
+              rating es sólo basado en el mocha.
+            </p>
+          </div>
+
+          {isLoading ? (
+            <div className="flex justify-center items-center h-[450px]">
+              <div className="text-muted-foreground">Cargando mapa...</div>
+            </div>
+          ) : visitedLocations && visitedLocations.length > 0 ? (
+            <VisitedMap locations={visitedLocations} className="mx-auto" />
+          ) : (
+            <div className="flex justify-center items-center h-[450px]">
+              <div className="text-muted-foreground">
+                No hay ubicaciones disponibles
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>
