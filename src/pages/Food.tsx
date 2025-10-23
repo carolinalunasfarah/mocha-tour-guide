@@ -16,23 +16,6 @@ const Food = () => {
     increment: 8,
   });
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen pt-24 pb-12">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-8 text-foreground cursor-default">
-            Repostería recomendada
-          </h1>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <LocationCardSkeleton key={index} />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen pt-24 pb-12">
       <div className="container mx-auto px-4">
@@ -40,25 +23,31 @@ const Food = () => {
           Repostería recomendada
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {paginatedFood.map((foodItem) => (
-            <LocationCard
-              key={foodItem.id}
-              id={foodItem.id}
-              name={foodItem.name}
-              address={foodItem.address}
-              imgUrl={foodItem.imgUrl}
-              domain="reposteria"
-              rating={foodItem.rating}
-            />
-          ))}
+          {isLoading
+            ? Array.from({ length: 8 }).map((_, index) => (
+                <LocationCardSkeleton key={index} />
+              ))
+            : paginatedFood.map((foodItem) => (
+                <LocationCard
+                  key={foodItem.id}
+                  id={foodItem.id}
+                  name={foodItem.name}
+                  address={foodItem.address}
+                  imgUrl={foodItem.imgUrl}
+                  domain="reposteria"
+                  rating={foodItem.rating}
+                />
+              ))}
         </div>
-        <div className="flex justify-center mt-8 min-h-[60px]">
-          {hasMore && (
-            <Button onClick={loadMore} size="lg">
-              Cargar más repostería
-            </Button>
-          )}
-        </div>
+        {!isLoading && (
+          <div className="flex justify-center mt-8 min-h-[60px]">
+            {hasMore && (
+              <Button onClick={loadMore} size="lg">
+                Cargar más repostería
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

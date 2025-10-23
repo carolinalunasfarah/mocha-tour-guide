@@ -8,7 +8,7 @@ const NotFound = () => {
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="text-center">
         <img
-          src="/sad-coffee.png"
+          src="/images/sad-coffee.png"
           alt="404 sad coffee cup"
           className="w-1/2 mx-auto mb-4"
         />
