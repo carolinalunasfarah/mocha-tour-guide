@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "/images/hero-mocha.jpg";
-import { UtensilsCrossed } from "lucide-react";
 import { VisitedMap } from "@/components/VisitedMap";
 import { useGetVisited } from "@/modules/visited/hooks/useGetVisited";
 
@@ -10,7 +9,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="relative h-[500px] md:h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[500px] md:h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
