@@ -20,13 +20,13 @@ const LocationDetail = () => {
   const foodId = !isMochaDomain ? id ?? "" : "";
 
   const {
-    data: mocha,
+    data: mocha = null,
     isLoading: isLoadingMocha,
     isError: isErrorMocha,
   } = useGetMochaById({ id: mochaId });
 
   const {
-    data: food,
+    data: food = null,
     isLoading: isLoadingFood,
     isError: isErrorFood,
   } = useGetFoodById({ id: foodId });
@@ -39,11 +39,11 @@ const LocationDetail = () => {
     return <LocationDetailSkeleton />;
   }
 
-  if (!isError || !data) {
+  if (isError || !data) {
     return (
       <StateComponent
         state="error"
-        message="Ubicación no encontrada"
+        message="No se encontró la ubicación"
         showGoBackButton
         onGoBack={() => navigate(-1)}
         goBackButtonText={isMochaDomain ? "Mochas" : "Repostería"}

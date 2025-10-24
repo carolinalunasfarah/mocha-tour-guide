@@ -3,9 +3,11 @@ import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { useGetFood } from "@/modules/food/hooks/useGetFood";
 import { usePagination } from "@/modules/shared/hooks/usePagination";
 import { Button } from "@/components/ui/button";
+import { StateComponent } from "@/components/StateComponent";
+import { useNavigate } from "react-router-dom";
 
 const Food = () => {
-  const { data: food = [], isLoading } = useGetFood();
+  const { data: food = [], isLoading, isError } = useGetFood();
   const {
     paginatedData: paginatedFood,
     hasMore,
@@ -15,6 +17,19 @@ const Food = () => {
     initialLimit: 8,
     increment: 8,
   });
+  const navigate = useNavigate();
+
+  if (isError || !food) {
+    return (
+      <StateComponent
+        state="error"
+        message="Hubo un error al cargar la repostería"
+        showGoBackButton
+        onGoBack={() => navigate("/")}
+        goBackButtonText="Inicio"
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen pt-24 pb-12">

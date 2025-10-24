@@ -3,9 +3,11 @@ import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { useGetMochas } from "@/modules/mochas/hooks/useGetMochas";
 import { usePagination } from "@/modules/shared/hooks/usePagination";
 import { Button } from "@/components/ui/button";
+import { StateComponent } from "@/components/StateComponent";
+import { useNavigate } from "react-router-dom";
 
 const Mochas = () => {
-  const { data: mochas = [], isLoading } = useGetMochas();
+  const { data: mochas = [], isLoading, isError } = useGetMochas();
   const {
     paginatedData: paginatedMochas,
     hasMore,
@@ -15,6 +17,19 @@ const Mochas = () => {
     initialLimit: 8,
     increment: 8,
   });
+  const navigate = useNavigate();
+
+  if (isError || !mochas) {
+    return (
+      <StateComponent
+        state="error"
+        message="Hubo un error al cargar las mochas"
+        showGoBackButton
+        onGoBack={() => navigate("/")}
+        goBackButtonText="Inicio"
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen pt-24 pb-12">
