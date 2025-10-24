@@ -21,7 +21,7 @@ const HeroSection = () => {
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto opacity-90 cursor-default">
           Disfruta de los mejores mochas y repostería
         </p>
-        <div className="flex gap-4 justify-center flex-wrap">
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
           <Link to="/mochas">
             <Button size="lg" variant="secondary" className="gap-2 w-[180px]">
               <img
