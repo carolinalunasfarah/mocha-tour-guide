@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getVisited } from '../../services/getVisited';
-import { Visited } from '../../domain/types';
+import { getVisited } from '@/modules/visited/services/getVisited';
+
+import { Visited } from '@/modules/visited/domain/types';
 
 const useGetVisited = () => {
   return useQuery<Visited[]>({

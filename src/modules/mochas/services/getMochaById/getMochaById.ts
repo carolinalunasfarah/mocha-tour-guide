@@ -3,7 +3,6 @@ import { firestore } from '@/lib/clients/firebase/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 
 import { Mocha } from '@/modules/mochas/domain/types';
-
 import { GetMochaByIdRequest } from './types';
 
 const getMochaById = async ({ id }: GetMochaByIdRequest): Promise<Mocha | null> => {

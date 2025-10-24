@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+
 import { UsePaginationProps, UsePaginationReturn } from './types';
 
 const usePagination = <T>({
