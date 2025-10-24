@@ -1,5 +1,6 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { queryClient } from "./modules/core/api/queryClient";
 
 // pages
 import { Home } from "./pages/Home";
@@ -10,7 +11,6 @@ import { NotFound } from "./pages/NotFound";
 
 // components
 import { Navbar } from "./components/Navbar";
-import { queryClient } from "./modules/core/api/queryClient";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

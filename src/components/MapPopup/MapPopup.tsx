@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/Button";
 import { StarIcon } from "lucide-react";
 import { MapPopupProps } from "./types";
 
@@ -8,14 +8,10 @@ const MapPopup = ({ locationName, rating, point }: MapPopupProps) => {
       <h3 className="m-0 mb-2 text-sm font-semibold text-foreground">
         {locationName}
       </h3>
-
-      {rating !== undefined && (
-        <div className="flex items-center justify-center gap-1 mb-3">
-          <StarIcon className="h-4 w-4 fill-accent text-accent" />
-          <span className="text-sm text-accent font-bold">{rating}</span>
-        </div>
-      )}
-
+      <div className="flex items-center justify-center gap-1 mb-3">
+        <StarIcon className="h-4 w-4 fill-accent text-accent" />
+        <span className="text-sm text-accent font-bold">{rating}</span>
+      </div>
       <div className="flex gap-2 justify-center">
         <Button asChild size="sm" className="text-xs">
           <a

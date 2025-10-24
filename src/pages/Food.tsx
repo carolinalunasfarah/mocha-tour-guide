@@ -2,12 +2,12 @@ import { LocationCard } from "@/components/LocationCard";
 import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { useGetFood } from "@/modules/food/hooks/useGetFood";
 import { usePagination } from "@/modules/shared/hooks/usePagination";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button/Button";
 import { StateComponent } from "@/components/StateComponent";
 import { useNavigate } from "react-router-dom";
 
 const Food = () => {
-  const { data: food = [], isLoading, isError } = useGetFood();
+  const { data: food = [], isLoading, isError, refetch } = useGetFood();
   const {
     paginatedData: paginatedFood,
     hasMore,
@@ -27,6 +27,8 @@ const Food = () => {
         showGoBackButton
         onGoBack={() => navigate("/")}
         goBackButtonText="Inicio"
+        showRetryButton
+        onRetry={refetch}
       />
     );
   }

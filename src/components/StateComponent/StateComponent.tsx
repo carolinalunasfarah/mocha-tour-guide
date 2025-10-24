@@ -1,6 +1,6 @@
 import { RotateCw, TriangleAlert } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/utils/styles/cn";
+import { Button } from "@/components/ui/Button";
 import { StateComponentProps } from "./types";
 
 const StateComponent = ({
@@ -10,6 +10,8 @@ const StateComponent = ({
   showGoBackButton = false,
   onGoBack,
   goBackButtonText = "Inicio",
+  showRetryButton = false,
+  onRetry,
 }: StateComponentProps) => {
   return (
     <div
@@ -26,10 +28,24 @@ const StateComponent = ({
         {message}
       </p>
 
-      {state === "error" && showGoBackButton && onGoBack && (
-        <Button onClick={onGoBack} className="gap-2" size="lg">
-          Volver a {goBackButtonText}
-        </Button>
+      {state === "error" && (
+        <div className="flex flex-col gap-3 sm:flex-row">
+          {showRetryButton && onRetry && (
+            <Button onClick={onRetry} className="gap-2" size="lg">
+              Reintentar
+            </Button>
+          )}
+          {showGoBackButton && onGoBack && (
+            <Button
+              onClick={onGoBack}
+              className="gap-2"
+              size="lg"
+              variant="secondary"
+            >
+              Volver a {goBackButtonText}
+            </Button>
+          )}
+        </div>
       )}
     </div>
   );

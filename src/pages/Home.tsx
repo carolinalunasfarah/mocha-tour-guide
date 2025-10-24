@@ -1,6 +1,6 @@
-import { HeroSection } from "@/components/Home/HeroSection/HeroSection";
-import { DescriptionSection } from "@/components/Home/DescriptionSection";
-import { MapSection } from "@/components/Home/MapSection";
+import { HeroSection } from "@/components/HeroSection";
+import { DescriptionSection } from "@/components/DescriptionSection";
+import { MapSection } from "@/components/MapSection";
 
 const Home = () => {
   return (

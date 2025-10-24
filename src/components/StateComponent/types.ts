@@ -5,6 +5,8 @@ type StateComponentProps = {
     showGoBackButton?: boolean;
     onGoBack?: () => void;
     goBackButtonText?: string;
+    showRetryButton?: boolean;
+    onRetry?: () => void;
   };
 
   export type { StateComponentProps };

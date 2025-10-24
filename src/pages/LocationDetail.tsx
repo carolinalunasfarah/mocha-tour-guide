@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button/Button";
 import { useGetMochaById } from "@/modules/mochas/hooks/useGetMochaById";
 import { useGetFoodById } from "@/modules/food/hooks/useGetFoodById";
 import { LocationMap } from "@/components/LocationMap";
@@ -23,12 +23,14 @@ const LocationDetail = () => {
     data: mocha = null,
     isLoading: isLoadingMocha,
     isError: isErrorMocha,
+    refetch: refetchMocha,
   } = useGetMochaById({ id: mochaId });
 
   const {
     data: food = null,
     isLoading: isLoadingFood,
     isError: isErrorFood,
+    refetch: refetchFood,
   } = useGetFoodById({ id: foodId });
 
   const isLoading = isMochaDomain ? isLoadingMocha : isLoadingFood;
@@ -47,6 +49,8 @@ const LocationDetail = () => {
         showGoBackButton
         onGoBack={() => navigate(-1)}
         goBackButtonText={isMochaDomain ? "Mochas" : "Repostería"}
+        showRetryButton
+        onRetry={isMochaDomain ? refetchMocha : refetchFood}
       />
     );
   }
