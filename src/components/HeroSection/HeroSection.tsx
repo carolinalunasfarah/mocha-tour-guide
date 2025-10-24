@@ -23,7 +23,7 @@ const HeroSection = () => {
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <Link to="/mochas">
-            <Button size="lg" variant="secondary" className="gap-2">
+            <Button size="lg" variant="secondary" className="gap-2 w-[180px]">
               <img
                 src="/icons/logo-white.png"
                 alt="Mocha Tour logo"
@@ -33,7 +33,7 @@ const HeroSection = () => {
             </Button>
           </Link>
           <Link to="/reposteria">
-            <Button size="lg" className="gap-2">
+            <Button size="lg" className="gap-2 w-[180px]">
               <img
                 src="/icons/croissant.png"
                 alt="Croissant icon"
