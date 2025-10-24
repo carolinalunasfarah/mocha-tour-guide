@@ -1,0 +1,65 @@
+/* Leaflet Popup Styles */
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-tip {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-popup-close-button {
+  background: hsl(var(--background)) !important;
+  border-radius: 50% !important;
+  width: 24px !important;
+  height: 24px !important;
+  color: white !important;
+  cursor: pointer !important;
+  margin: 0.3rem 0.3rem 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  background: hsl(var(--secondary)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Sobrescribir estilos de Leaflet para botones */
+.leaflet-popup-content-wrapper * {
+  box-sizing: border-box;
+}
+
+.leaflet-popup-content .inline-flex {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  border: none !important;
+}
+
+.leaflet-popup-content .inline-flex:hover {
+  background-color: hsl(var(--primary) / 0.9) !important;
+}
+
+.leaflet-popup-content .bg-secondary {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+.leaflet-popup-content .bg-secondary:hover {
+  background-color: hsl(var(--secondary) / 0.8) !important;
+}
+
+.leaflet-popup-content a {
+  color: inherit !important;
+  text-decoration: none !important;
+}

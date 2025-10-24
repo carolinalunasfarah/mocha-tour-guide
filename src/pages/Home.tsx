@@ -40,7 +40,11 @@ const Home = () => {
             </Link>
             <Link to="/reposteria">
               <Button size="lg" className="gap-2">
-                <UtensilsCrossed className="h-5 w-5" />
+                <img
+                  src="/icons/croissant.png"
+                  alt="Croissant icon"
+                  className="h-6 w-6"
+                />
                 Explorar Repostería
               </Button>
             </Link>
@@ -85,7 +89,7 @@ const Home = () => {
               <div className="text-muted-foreground">Cargando mapa...</div>
             </div>
           ) : visitedLocations && visitedLocations.length > 0 ? (
-            <VisitedMap locations={visitedLocations} className="mx-auto" />
+            <VisitedMap locations={visitedLocations} />
           ) : (
             <div className="flex justify-center items-center h-[450px]">
               <div className="text-muted-foreground">
