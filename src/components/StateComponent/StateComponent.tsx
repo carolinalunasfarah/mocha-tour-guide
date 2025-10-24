@@ -1,6 +1,9 @@
 import { RotateCw, TriangleAlert } from "lucide-react";
-import { cn } from "@/utils/styles/cn";
+
 import { Button } from "@/components/ui/Button";
+
+import { cn } from "@/utils/styles/cn";
+
 import { StateComponentProps } from "./types";
 
 const StateComponent = ({

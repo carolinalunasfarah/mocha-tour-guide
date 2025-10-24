@@ -1,6 +1,7 @@
-import { VisitedMap } from "@/components/VisitedMap";
 import { useGetVisited } from "@/modules/visited/hooks/useGetVisited";
+
 import { Skeleton } from "@/components/ui/Skeleton";
+import { VisitedMap } from "@/components/VisitedMap";
 import { StateComponent } from "@/components/StateComponent";
 
 const MapSection = () => {

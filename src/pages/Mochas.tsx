@@ -1,10 +1,12 @@
-import { LocationCard } from "@/components/LocationCard";
-import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
+import { useNavigate } from "react-router-dom";
+
 import { useGetMochas } from "@/modules/mochas/hooks/useGetMochas";
 import { usePagination } from "@/modules/shared/hooks/usePagination";
+
 import { Button } from "@/components/ui/Button";
+import { LocationCard } from "@/components/LocationCard";
+import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { StateComponent } from "@/components/StateComponent";
-import { useNavigate } from "react-router-dom";
 
 const Mochas = () => {
   const { data: mochas = [], isLoading, isError } = useGetMochas();

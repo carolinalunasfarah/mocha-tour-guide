@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/Button";
 import { StarIcon } from "lucide-react";
+
+import { Button } from "@/components/ui/Button";
+
 import { MapPopupProps } from "./types";
 
 const MapPopup = ({ locationName, rating, point }: MapPopupProps) => {

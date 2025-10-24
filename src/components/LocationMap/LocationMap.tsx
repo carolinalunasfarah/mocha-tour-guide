@@ -1,11 +1,14 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+
+import { MapPopup } from "@/components/MapPopup";
+
+import { createMarker } from "@/utils/map/createMarker";
+import { cn } from "@/utils/styles/cn";
+
 import { LocationMapProps } from "./types";
 
 import "leaflet/dist/leaflet.css";
 import "@/styles/leaflet.css";
-import { MapPopup } from "@/components/MapPopup";
-import { createMarker } from "@/utils/map/createMarker";
-import { cn } from "@/utils/styles/cn";
 
 const LocationMap = ({
   point,

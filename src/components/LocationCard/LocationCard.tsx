@@ -1,8 +1,11 @@
-import { Card, CardContent } from "@/components/ui/Card";
-import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { LocationCardProps } from "./types";
+
+import { MapPin } from "lucide-react";
+
+import { Card, CardContent } from "@/components/ui/Card";
 import { StarRating } from "@/components/StarRating";
+
+import { LocationCardProps } from "./types";
 
 const LocationCard = ({
   id,

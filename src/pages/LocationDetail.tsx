@@ -1,8 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/Button/Button";
+
 import { useGetMochaById } from "@/modules/mochas/hooks/useGetMochaById";
 import { useGetFoodById } from "@/modules/food/hooks/useGetFoodById";
+
+import { Button } from "@/components/ui/Button";
 import { LocationMap } from "@/components/LocationMap";
 import { StarRating } from "@/components/StarRating";
 import { LocationDetailSkeleton } from "@/components/LocationDetailSkeleton";

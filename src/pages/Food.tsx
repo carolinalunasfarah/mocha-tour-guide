@@ -1,10 +1,12 @@
-import { LocationCard } from "@/components/LocationCard";
-import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
+import { useNavigate } from "react-router-dom";
+
 import { useGetFood } from "@/modules/food/hooks/useGetFood";
 import { usePagination } from "@/modules/shared/hooks/usePagination";
-import { Button } from "@/components/ui/Button/Button";
+
+import { Button } from "@/components/ui/Button";
+import { LocationCard } from "@/components/LocationCard";
+import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { StateComponent } from "@/components/StateComponent";
-import { useNavigate } from "react-router-dom";
 
 const Food = () => {
   const { data: food = [], isLoading, isError, refetch } = useGetFood();
