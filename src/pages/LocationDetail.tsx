@@ -5,6 +5,8 @@ import { useGetMochaById } from "@/modules/mochas/hooks/useGetMochaById";
 import { useGetFoodById } from "@/modules/food/hooks/useGetFoodById";
 import { LocationMap } from "@/components/LocationMap";
 import { StarRating } from "@/components/StarRating";
+import { LocationDetailSkeleton } from "@/components/LocationDetailSkeleton";
+import { StateComponent } from "@/components/StateComponent";
 
 const LocationDetail = () => {
   const { domain, id } = useParams<{
@@ -34,22 +36,18 @@ const LocationDetail = () => {
   const data = (isMochaDomain ? mocha : food) || null;
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen pt-24 pb-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center">Loading...</div>
-        </div>
-      </div>
-    );
+    return <LocationDetailSkeleton />;
   }
 
-  if (isError || !data) {
+  if (!isError || !data) {
     return (
-      <div className="min-h-screen pt-24 pb-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center">Location not found</div>
-        </div>
-      </div>
+      <StateComponent
+        state="error"
+        message="Ubicación no encontrada"
+        showGoBackButton
+        onGoBack={() => navigate(-1)}
+        goBackButtonText={isMochaDomain ? "Mochas" : "Repostería"}
+      />
     );
   }
 
