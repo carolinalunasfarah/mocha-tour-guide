@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { getMochaById } from '@/modules/mochas/services/getMochaById';
+
 import { UseGetMochaByIdParams } from './types';
-import { getMochaById } from '../../services/getMochaById';
 
 const useGetMochaById = (params: UseGetMochaByIdParams) => {
   return useQuery({

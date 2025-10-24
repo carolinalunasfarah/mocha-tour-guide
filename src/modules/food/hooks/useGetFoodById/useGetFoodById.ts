@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { getFoodById } from '@/modules/food/services/getFoodById';
+
 import { UseGetFoodByIdParams } from './types';
-import { getFoodById } from '../../services/getFoodById';
 
 const useGetFoodById = (params: UseGetFoodByIdParams ) => {
   return useQuery({

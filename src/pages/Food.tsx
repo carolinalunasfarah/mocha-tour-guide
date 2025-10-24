@@ -1,11 +1,15 @@
-import { LocationCard } from "@/components/LocationCard";
-import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
+import { useNavigate } from "react-router-dom";
+
 import { useGetFood } from "@/modules/food/hooks/useGetFood";
 import { usePagination } from "@/modules/shared/hooks/usePagination";
-import { Button } from "@/components/ui/button";
+
+import { Button } from "@/components/ui/Button";
+import { LocationCard } from "@/components/LocationCard";
+import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
+import { StateComponent } from "@/components/StateComponent";
 
 const Food = () => {
-  const { data: food = [], isLoading } = useGetFood();
+  const { data: food = [], isLoading, isError, refetch } = useGetFood();
   const {
     paginatedData: paginatedFood,
     hasMore,
@@ -15,9 +19,24 @@ const Food = () => {
     initialLimit: 8,
     increment: 8,
   });
+  const navigate = useNavigate();
+
+  if (isError || !food) {
+    return (
+      <StateComponent
+        state="error"
+        message="Hubo un error al cargar la repostería"
+        showGoBackButton
+        onGoBack={() => navigate("/")}
+        goBackButtonText="Inicio"
+        showRetryButton
+        onRetry={refetch}
+      />
+    );
+  }
 
   return (
-    <div className="min-h-screen pt-24 pb-12">
+    <div className="min-h-screen pt-24 pb-12 md:px-8">
       <div className="px-4">
         <h1 className="text-2xl md:text-3xl font-bold mb-8 text-foreground cursor-default">
           Repostería recomendada

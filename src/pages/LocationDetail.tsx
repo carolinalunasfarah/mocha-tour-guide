@@ -1,8 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import { useGetMochaById } from "@/modules/mochas/hooks/useGetMochaById";
 import { useGetFoodById } from "@/modules/food/hooks/useGetFoodById";
+
+import { Button } from "@/components/ui/Button";
 import { LocationMap } from "@/components/LocationMap";
 import { StarRating } from "@/components/StarRating";
 import { LocationDetailSkeleton } from "@/components/LocationDetailSkeleton";
@@ -20,15 +22,17 @@ const LocationDetail = () => {
   const foodId = !isMochaDomain ? id ?? "" : "";
 
   const {
-    data: mocha,
+    data: mocha = null,
     isLoading: isLoadingMocha,
     isError: isErrorMocha,
+    refetch: refetchMocha,
   } = useGetMochaById({ id: mochaId });
 
   const {
-    data: food,
+    data: food = null,
     isLoading: isLoadingFood,
     isError: isErrorFood,
+    refetch: refetchFood,
   } = useGetFoodById({ id: foodId });
 
   const isLoading = isMochaDomain ? isLoadingMocha : isLoadingFood;
@@ -39,14 +43,16 @@ const LocationDetail = () => {
     return <LocationDetailSkeleton />;
   }
 
-  if (!isError || !data) {
+  if (isError || !data) {
     return (
       <StateComponent
         state="error"
-        message="Ubicación no encontrada"
+        message="No se encontró la ubicación"
         showGoBackButton
         onGoBack={() => navigate(-1)}
         goBackButtonText={isMochaDomain ? "Mochas" : "Repostería"}
+        showRetryButton
+        onRetry={isMochaDomain ? refetchMocha : refetchFood}
       />
     );
   }

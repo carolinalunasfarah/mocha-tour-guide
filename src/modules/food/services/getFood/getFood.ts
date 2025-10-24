@@ -1,6 +1,8 @@
 import { firestore } from '@/lib/clients/firebase/firebaseConfig';
+
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import { Food } from '../../domain/types';
+
+import { Food } from '@/modules/food/domain/types';
 
 const getFood = async (): Promise<Food[]> => {
   const foodRef = collection(firestore, 'food');

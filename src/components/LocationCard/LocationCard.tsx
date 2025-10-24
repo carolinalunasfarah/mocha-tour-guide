@@ -1,10 +1,11 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+
+import { MapPin } from "lucide-react";
+
+import { Card, CardContent } from "@/components/ui/Card";
+import { StarRating } from "@/components/StarRating";
+
 import { LocationCardProps } from "./types";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useState } from "react";
-import { StarRating } from "../StarRating";
 
 const LocationCard = ({
   id,
@@ -14,24 +15,16 @@ const LocationCard = ({
   domain = "mochas",
   rating,
 }: LocationCardProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
   return (
     <Link to={`/${domain}/${id}`}>
       <Card className="group overflow-hidden cursor-pointer transition-all duration-300 border-none">
         <div className="aspect-[4/3] overflow-hidden relative">
-          {!isLoaded && (
-            <Skeleton className="absolute inset-0 w-full h-full z-10" />
-          )}
           <img
             src={imgUrl}
             alt={name}
             width={400}
             height={300}
-            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 transition-opacity duration-300 ${
-              isLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            onLoad={() => setIsLoaded(true)}
+            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 transition-opacity duration-300 ${"opacity-100"}`}
             loading="lazy"
             decoding="async"
           />

@@ -1,11 +1,15 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+
+import { MapPopup } from "@/components/MapPopup";
+
+import { createMarker } from "@/utils/map/createMarker";
+import { calculateCenter } from "@/utils/map/calculateCenter";
+import { cn } from "@/utils/styles/cn";
+
 import { VisitedMapProps } from "./types";
-import { cn } from "@/lib/utils";
+
 import "leaflet/dist/leaflet.css";
-import "../../styles/leaflet.css";
-import { MapPopup } from "../MapPopup";
-import { createMarker } from "@/lib/map/createMarker";
-import { calculateCenter } from "@/lib/map/calculateCenter";
+import "@/styles/leaflet.css";
 
 const VisitedMap = ({ locations, zoom = 14, className }: VisitedMapProps) => {
   const customIcon = createMarker();

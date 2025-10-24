@@ -1,6 +1,7 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+import { Skeleton } from "@/components/ui/Skeleton";
+import { Button } from "@/components/ui/Button";
 
 const LocationDetailSkeleton = () => {
   return (
