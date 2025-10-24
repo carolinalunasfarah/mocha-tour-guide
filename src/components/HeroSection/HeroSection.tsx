@@ -44,6 +44,12 @@ const HeroSection = () => {
           </Link>
         </div>
       </div>
+
+      <div className="absolute bottom-6 right-6 z-20">
+        <p className="text-xs text-primary-foreground bg-primary px-2 py-1 rounded cursor-default">
+          Foto de Daniel Torobekov. Pexels.com
+        </p>
+      </div>
     </div>
   );
 };

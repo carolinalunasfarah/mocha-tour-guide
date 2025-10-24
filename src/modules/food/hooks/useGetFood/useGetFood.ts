@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getFood } from '../../services/getFood';
-import { Food } from '../../domain/types';
+import { getFood } from '@/modules/food/services/getFood';
+
+import { Food } from '@/modules/food/domain/types';
 
 const useGetFood = () => {
   return useQuery<Food[]>({

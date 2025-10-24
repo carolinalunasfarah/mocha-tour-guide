@@ -36,7 +36,7 @@ const Food = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-12">
+    <div className="min-h-screen pt-24 pb-12 md:px-8">
       <div className="px-4">
         <h1 className="text-2xl md:text-3xl font-bold mb-8 text-foreground cursor-default">
           Repostería recomendada

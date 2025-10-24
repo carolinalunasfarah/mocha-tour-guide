@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getMochas } from '../../services/getMochas';
-import { Mocha } from '../../domain/types';
+import { getMochas } from '@/modules/mochas/services/getMochas';
+
+import { Mocha } from '@/modules/mochas/domain/types';
 
 const useGetMochas = () => {
   return useQuery<Mocha[]>({
