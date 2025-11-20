@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
           <img
-            src="/icons/logo-cream.png"
+            src="/icons/logo-cream.svg"
             alt="Mocha tour logo"
             className="h-10 w-10 transition-transform group-hover:rotate-12"
           />
