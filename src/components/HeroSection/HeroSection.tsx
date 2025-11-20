@@ -10,6 +10,10 @@ const HeroSection = () => {
           src="/images/hero-mocha.jpg"
           alt="Mocha Tour Hero"
           className="w-full h-full object-cover"
+          width="1440"
+          height="960"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60" />
       </div>
