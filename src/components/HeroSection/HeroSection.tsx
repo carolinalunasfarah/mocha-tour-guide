@@ -7,7 +7,7 @@ const HeroSection = () => {
     <div className="relative h-[500px] md:h-[85vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-mocha.jpg"
+          src="/images/hero-mocha.svg"
           alt="Mocha Tour Hero"
           className="w-full h-full object-cover"
           width="1440"
