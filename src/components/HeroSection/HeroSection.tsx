@@ -10,6 +10,10 @@ const HeroSection = () => {
           src="/images/hero-mocha.jpg"
           alt="Mocha Tour Hero"
           className="w-full h-full object-cover"
+          width="1440"
+          height="960"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60" />
       </div>
@@ -25,7 +29,7 @@ const HeroSection = () => {
           <Link to="/mochas">
             <Button size="lg" variant="secondary" className="gap-2 w-[180px]">
               <img
-                src="/icons/logo-white.png"
+                src="/icons/logo-white.svg"
                 alt="Mocha Tour logo"
                 className="h-6 w-6"
               />
@@ -35,7 +39,7 @@ const HeroSection = () => {
           <Link to="/reposteria">
             <Button size="lg" className="gap-2 w-[180px]">
               <img
-                src="/icons/croissant.png"
+                src="/icons/croissant.svg"
                 alt="Croissant icon"
                 className="h-6 w-6"
               />
