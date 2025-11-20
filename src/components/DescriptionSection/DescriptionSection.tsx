@@ -25,8 +25,7 @@ const DescriptionSection = () => {
             <br />
             Hoy se transforma en esta pequeña guía para quienes disfruten del
             mocha y la repostería. Hasta la fecha he visitado{" "}
-            {visitedLocations.length} cafeterías, todas, excepto una, emplazadas
-            en la comuna de Providencia en Santiago de Chile.
+            {visitedLocations.length} cafeterías en Santiago de Chile.
           </p>
         </div>
 

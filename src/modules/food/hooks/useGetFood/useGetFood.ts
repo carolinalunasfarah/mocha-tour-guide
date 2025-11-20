@@ -1,13 +1,22 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { getFood } from '@/modules/food/services/getFood';
-
-import { Food } from '@/modules/food/domain/types';
+import { getFood } from "@/modules/food/services/getFood";
+import type { PaginatedFoodResult } from "@/modules/food/services/getFood/types";
+import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 
 const useGetFood = () => {
-  return useQuery<Food[]>({
-    queryKey: ['food'],
-    queryFn: getFood,
+  return useInfiniteQuery<
+    PaginatedFoodResult,
+    Error,
+    PaginatedFoodResult[],
+    string[],
+    QueryDocumentSnapshot<DocumentData> | null
+  >({
+    queryKey: ["food"],
+    queryFn: ({ pageParam }) => getFood(pageParam),
+    initialPageParam: null,
+    getNextPageParam: (lastPage) =>
+      lastPage.hasMore ? lastPage.lastVisible : undefined,
     staleTime: 60 * 60 * 1000,
   });
 };
