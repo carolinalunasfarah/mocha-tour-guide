@@ -1,15 +1,21 @@
+import { useMemo } from "react";
 import { useGetVisited } from "@/modules/visited/hooks/useGetVisited";
 import { VisitedMap } from "@/components/VisitedMap";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { StateComponent } from "@/components/StateComponent";
+import type { PaginatedVisitedResult } from "@/modules/visited/services/getVisited/types";
 
 const DescriptionSection = () => {
-  const {
-    data: visitedLocations = [],
-    isLoading,
-    isError,
-    refetch,
-  } = useGetVisited();
+  const { data, isLoading, isError, refetch } = useGetVisited();
+
+  const visitedLocations = useMemo(() => {
+    if (!data) {
+      return [];
+    }
+
+    const pages = (data as { pages?: PaginatedVisitedResult[] }).pages ?? [];
+    return pages.flatMap((page) => page.visited);
+  }, [data]);
 
   return (
     <div className="py-10 md:py-20 bg-background">
