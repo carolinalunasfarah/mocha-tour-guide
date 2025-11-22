@@ -48,7 +48,7 @@ const VisitedLocations = () => {
       <div className="min-h-screen pt-24 pb-12 md:px-8">
         <div className="px-4">
           <h1 className="text-2xl md:text-3xl font-bold mb-8 text-foreground cursor-default">
-            Lugares visitados {allVisited.length}
+            Lugares visitados
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {Array.from({ length: 8 }).map((_, index) => (
@@ -70,13 +70,15 @@ const VisitedLocations = () => {
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Buscar lugar"
+            placeholder="Buscar lugar por nombre..."
           />
         </div>
         {allVisited.length === 0 ? (
           <div className="flex justify-center items-center min-h-[400px]">
             <div className="text-muted-foreground text-lg cursor-default">
-              No hay lugares visitados aún
+              {searchQuery
+                ? "No hay resultados con esta búsqueda"
+                : "No hay lugares visitados aún"}
             </div>
           </div>
         ) : (
