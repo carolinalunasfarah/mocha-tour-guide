@@ -1,8 +1,9 @@
-import ENVIRONMENT from '@/lib/environment';
+import ENVIRONMENT from "@/lib/environment";
 
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAnalytics} from 'firebase/analytics'
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: ENVIRONMENT.FIREBASE_API_KEY,
@@ -17,5 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const firestore = getFirestore(app);
+const auth = getAuth(app);
 
-export { analytics, app, firestore };
+export { analytics, app, auth, firestore };
