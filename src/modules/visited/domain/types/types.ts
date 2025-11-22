@@ -5,6 +5,7 @@ type Visited = {
   location: GeoPoint;
   name: string;
   rating: number;
+  nameLowercase: string;
 };
 
 export type { Visited };

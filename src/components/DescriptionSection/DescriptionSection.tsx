@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useGetVisited } from "@/modules/visited/hooks/useGetVisited";
 import { VisitedMap } from "@/components/VisitedMap";
 import { Skeleton } from "@/components/ui/Skeleton";
@@ -6,7 +6,21 @@ import { StateComponent } from "@/components/StateComponent";
 import type { PaginatedVisitedResult } from "@/modules/visited/services/getVisited/types";
 
 const DescriptionSection = () => {
-  const { data, isLoading, isError, refetch } = useGetVisited();
+  const {
+    data,
+    isLoading,
+    isError,
+    refetch,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGetVisited();
+
+  useEffect(() => {
+    if (hasNextPage && !isFetchingNextPage && !isLoading) {
+      fetchNextPage();
+    }
+  }, [hasNextPage, isFetchingNextPage, isLoading, fetchNextPage]);
 
   const visitedLocations = useMemo(() => {
     if (!data) {

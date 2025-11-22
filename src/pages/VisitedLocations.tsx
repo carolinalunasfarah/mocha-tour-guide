@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetVisited } from "@/modules/visited/hooks/useGetVisited";
 import type { PaginatedVisitedResult } from "@/modules/visited/services/getVisited/types";
@@ -7,8 +7,10 @@ import { Button } from "@/components/ui/Button";
 import { LocationCard } from "@/components/LocationCard";
 import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { StateComponent } from "@/components/StateComponent";
+import { SearchBar } from "@/components/SearchBar";
 
 const VisitedLocations = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const {
     data,
     fetchNextPage,
@@ -16,7 +18,7 @@ const VisitedLocations = () => {
     isFetchingNextPage,
     isLoading,
     isError,
-  } = useGetVisited();
+  } = useGetVisited(searchQuery);
 
   const navigate = useNavigate();
 
@@ -46,7 +48,7 @@ const VisitedLocations = () => {
       <div className="min-h-screen pt-24 pb-12 md:px-8">
         <div className="px-4">
           <h1 className="text-2xl md:text-3xl font-bold mb-8 text-foreground cursor-default">
-            Lugares visitados
+            Lugares visitados {allVisited.length}
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {Array.from({ length: 8 }).map((_, index) => (
@@ -61,9 +63,16 @@ const VisitedLocations = () => {
   return (
     <div className="min-h-screen pt-24 pb-12 md:px-8">
       <div className="px-4">
-        <h1 className="text-2xl md:text-3xl font-bold mb-8 text-foreground cursor-default">
-          Lugares visitados
-        </h1>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+          <h1 className="text-2xl md:text-3xl md:mb-0 mb-4 font-bold text-foreground cursor-default">
+            Lugares visitados
+          </h1>
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Buscar lugar"
+          />
+        </div>
         {allVisited.length === 0 ? (
           <div className="flex justify-center items-center min-h-[400px]">
             <div className="text-muted-foreground text-lg cursor-default">

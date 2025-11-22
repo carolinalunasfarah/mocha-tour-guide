@@ -8,26 +8,36 @@ import {
   startAfter,
   DocumentData,
   QueryDocumentSnapshot,
+  where,
+  QueryConstraint,
 } from "firebase/firestore";
 import { Visited } from "@/modules/visited/domain/types";
 import { FETCH_LIMIT, PaginatedVisitedResult } from "./types";
 
 const getVisited = async (
   lastDoc?: QueryDocumentSnapshot<DocumentData> | null,
+  searchQuery?: string,
 ): Promise<PaginatedVisitedResult> => {
   const visitedRef = collection(firestore, "visited");
-  let q;
+  const queryConstraints: QueryConstraint[] = [];
+
+  if (searchQuery) {
+    const lowerCaseSearchQuery = searchQuery.toLowerCase();
+    queryConstraints.push(where("nameLowercase", ">=", lowerCaseSearchQuery));
+    queryConstraints.push(
+      where("nameLowercase", "<=", lowerCaseSearchQuery + "\uf8ff"),
+    );
+    queryConstraints.push(orderBy("nameLowercase", "asc"));
+  } else {
+    queryConstraints.push(orderBy("rating", "desc"));
+  }
 
   if (lastDoc) {
-    q = query(
-      visitedRef,
-      orderBy("rating", "desc"),
-      startAfter(lastDoc),
-      limit(FETCH_LIMIT),
-    );
-  } else {
-    q = query(visitedRef, orderBy("rating", "desc"), limit(FETCH_LIMIT));
+    queryConstraints.push(startAfter(lastDoc));
   }
+  queryConstraints.push(limit(FETCH_LIMIT));
+
+  const q = query(visitedRef, ...queryConstraints);
 
   const snapshot = await getDocs(q);
   const visited = snapshot.docs.map((doc) => {
