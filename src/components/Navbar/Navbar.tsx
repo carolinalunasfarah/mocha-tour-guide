@@ -1,4 +1,12 @@
+import { MenuIcon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { Button } from "../ui/Button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/DropdownMenu";
 
 const Navbar = () => {
   const location = useLocation();
@@ -20,26 +28,84 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center gap-8">
-          <Link
-            to="/mochas"
-            className={
-              isActive("/mochas")
-                ? "text-accent font-semibold"
-                : "text-foreground"
-            }
-          >
-            Mochas
-          </Link>
-          <Link
-            to="/reposteria"
-            className={
-              isActive("/reposteria")
-                ? "text-accent font-semibold"
-                : "text-foreground"
-            }
-          >
-            Repostería
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <MenuIcon className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <Link
+                  to="/mochas"
+                  className={
+                    isActive("/mochas")
+                      ? "text-accent font-semibold"
+                      : "text-foreground"
+                  }
+                >
+                  Mochas
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  to="/reposteria"
+                  className={
+                    isActive("/reposteria")
+                      ? "text-accent font-semibold"
+                      : "text-foreground"
+                  }
+                >
+                  Repostería
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  to="/visitados"
+                  className={
+                    isActive("/visitados")
+                      ? "text-accent font-semibold"
+                      : "text-foreground"
+                  }
+                >
+                  Visitados
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <div className="hidden md:flex items-center gap-8">
+            <Link
+              to="/mochas"
+              className={
+                isActive("/mochas")
+                  ? "text-accent font-semibold"
+                  : "text-foreground"
+              }
+            >
+              Mochas
+            </Link>
+            <Link
+              to="/reposteria"
+              className={
+                isActive("/reposteria")
+                  ? "text-accent font-semibold"
+                  : "text-foreground"
+              }
+            >
+              Repostería
+            </Link>
+            <Link
+              to="/visitados"
+              className={
+                isActive("/visitados")
+                  ? "text-accent font-semibold"
+                  : "text-foreground"
+              }
+            >
+              Visitados
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

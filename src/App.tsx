@@ -8,6 +8,7 @@ import { Mochas } from "./pages/Mochas";
 import { Food } from "./pages/Food";
 import { LocationDetail } from "./pages/LocationDetail";
 import { NotFound } from "./pages/NotFound";
+import { VisitedLocations } from "./pages/VisitedLocations";
 
 // components
 import { Navbar } from "./components/Navbar";
@@ -20,6 +21,7 @@ const App = () => (
         <Route path="/" element={<Home />} />
         <Route path="/mochas" element={<Mochas />} />
         <Route path="/reposteria" element={<Food />} />
+        <Route path="/visitados" element={<VisitedLocations />} />
         <Route path="/:domain/:id" element={<LocationDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
