@@ -12,6 +12,9 @@ import { VisitedLocations } from "./pages/VisitedLocations";
 
 // components
 import { Navbar } from "./components/Navbar";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Login } from "./pages/Login";
+import { Admin } from "./pages/Admin";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -24,6 +27,16 @@ const App = () => (
         <Route path="/visitados" element={<VisitedLocations />} />
         <Route path="/:domain/:id" element={<LocationDetail />} />
         <Route path="*" element={<NotFound />} />
+
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </QueryClientProvider>
