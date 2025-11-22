@@ -20,14 +20,10 @@ const VisitedSection = ({
         throw new Error("Para crear visited, el nombre es requerido");
       }
 
-      // Siempre usar el rating de mocha (si hay mocha y food usa mochaRating, sino usa rating que ya está sincronizado)
-      const visitedRating =
-        data.createMocha && data.createFood ? data.mochaRating : data.rating;
-
       await createVisitedMutation.mutateAsync({
         name: data.name,
         location: new GeoPoint(data.latitude, data.longitude),
-        rating: visitedRating,
+        rating: data.rating,
         nameLowercase: data.nameLowercase,
       });
     },

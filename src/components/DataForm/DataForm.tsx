@@ -50,14 +50,12 @@ const DataForm = () => {
 
   useEffect(() => {
     if (createMocha) {
-      const currentMochaRating = createFood
-        ? form.getValues("mochaRating")
-        : form.getValues("rating");
-      if (form.getValues("rating") !== currentMochaRating) {
-        form.setValue("rating", currentMochaRating, { shouldValidate: false });
+      const currentRating = form.getValues("rating");
+      if (currentRating !== mochaRating) {
+        form.setValue("rating", mochaRating, { shouldValidate: false });
       }
     }
-  }, [createMocha, createFood, rating, mochaRatingField, form]);
+  }, [createMocha, mochaRating, form]);
 
   const onSubmit = async (data: FormData) => {
     const promises: Promise<void>[] = [];
