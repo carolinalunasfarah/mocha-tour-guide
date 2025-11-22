@@ -1,6 +1,6 @@
 type CheckboxConfig = {
   id: string;
-  fieldName: "createMocha" | "createFood" | "createVisited";
+  fieldName: "createMocha" | "createFood";
   label: string;
 };
 
@@ -14,11 +14,6 @@ const checkboxes: CheckboxConfig[] = [
     id: "createFood",
     fieldName: "createFood",
     label: "Crear Repostería",
-  },
-  {
-    id: "createVisited",
-    fieldName: "createVisited",
-    label: "Crear Lugar Visitado",
   },
 ];
 

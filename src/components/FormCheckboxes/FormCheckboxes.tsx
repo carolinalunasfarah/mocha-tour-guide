@@ -1,7 +1,7 @@
 import { Label } from "@/components/ui/Label";
 
 import { checkboxes } from "./checkboxConfig";
-import type { FormCheckboxesProps } from "./types";
+import { FormCheckboxesProps } from "./types";
 
 const FormCheckboxes = ({ register }: FormCheckboxesProps) => {
   return (
