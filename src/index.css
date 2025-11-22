@@ -22,7 +22,7 @@ All colors MUST be HSL.
     --muted-foreground: 21 27% 69%;
     --accent: 267 24% 84%;
     --accent-foreground: 20 15% 15%;
-    --destructive: 0 69% 67%
+    --destructive: 0 69% 67%;
     --destructive-foreground: 20 15% 15%;
     --border: 16 15% 29%;
     --input: 16 15% 29%;
@@ -52,11 +52,16 @@ All colors MUST be HSL.
     --shadow-color: hsl(20 18% 51% / 0.4);
     --shadow-2xs: 2px 2px 0px 0px hsl(20 18% 51% / 0.06);
     --shadow-xs: 2px 2px 0px 0px hsl(20 18% 51% / 0.06);
-    --shadow-sm: 2px 2px 0px 0px hsl(20 18% 51% / 0.11), 2px 1px 2px -1px hsl(20 18% 51% / 0.11);
-    --shadow: 2px 2px 0px 0px hsl(20 18% 51% / 0.11), 2px 1px 2px -1px hsl(20 18% 51% / 0.11);
-    --shadow-md: 2px 2px 0px 0px hsl(20 18% 51% / 0.11), 2px 2px 4px -1px hsl(20 18% 51% / 0.11);
-    --shadow-lg: 2px 2px 0px 0px hsl(20 18% 51% / 0.11), 2px 4px 6px -1px hsl(20 18% 51% / 0.11);
-    --shadow-xl: 2px 2px 0px 0px hsl(20 18% 51% / 0.11), 2px 8px 10px -1px hsl(20 18% 51% / 0.11);
+    --shadow-sm: 2px 2px 0px 0px hsl(20 18% 51% / 0.11),
+      2px 1px 2px -1px hsl(20 18% 51% / 0.11);
+    --shadow: 2px 2px 0px 0px hsl(20 18% 51% / 0.11),
+      2px 1px 2px -1px hsl(20 18% 51% / 0.11);
+    --shadow-md: 2px 2px 0px 0px hsl(20 18% 51% / 0.11),
+      2px 2px 4px -1px hsl(20 18% 51% / 0.11);
+    --shadow-lg: 2px 2px 0px 0px hsl(20 18% 51% / 0.11),
+      2px 4px 6px -1px hsl(20 18% 51% / 0.11);
+    --shadow-xl: 2px 2px 0px 0px hsl(20 18% 51% / 0.11),
+      2px 8px 10px -1px hsl(20 18% 51% / 0.11);
     --shadow-2xl: 2px 2px 0px 0px hsl(20 18% 51% / 0.28);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
