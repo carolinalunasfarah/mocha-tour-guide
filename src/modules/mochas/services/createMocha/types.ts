@@ -1,4 +1,4 @@
-import { GeoPoint } from 'firebase/firestore';
+import { GeoPoint } from "firebase/firestore";
 
 type CreateMochaRequest = {
   name: string;
@@ -7,7 +7,7 @@ type CreateMochaRequest = {
   imgUrl: string;
   rating: number;
   location: GeoPoint;
+  nameLowercase: string;
 };
 
 export type { CreateMochaRequest };
-
