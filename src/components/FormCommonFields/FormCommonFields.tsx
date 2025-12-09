@@ -3,7 +3,11 @@ import { Label } from "@/components/ui/Label";
 
 import { FormCommonFieldsProps } from "./types";
 
-const FormCommonFields = ({ register, errors }: FormCommonFieldsProps) => {
+const FormCommonFields = ({
+  register,
+  errors,
+  nameLowercase,
+}: FormCommonFieldsProps) => {
   return (
     <>
       <div className="space-y-2">
@@ -19,6 +23,19 @@ const FormCommonFields = ({ register, errors }: FormCommonFieldsProps) => {
             {errors.name.message}
           </p>
         )}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="nameLowercase">Nombre (minúsculas)</Label>
+        <Input
+          id="nameLowercase"
+          value={nameLowercase}
+          readOnly
+          className="bg-muted cursor-not-allowed"
+        />
+        <p className="text-xs text-muted-foreground cursor-default">
+          Se genera automáticamente desde el nombre
+        </p>
       </div>
 
       <div className="space-y-2">

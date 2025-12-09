@@ -144,6 +144,7 @@ const DataForm = () => {
             <FormCommonFields
               register={form.register}
               errors={form.formState.errors}
+              nameLowercase={nameLowercase}
             />
           )}
 

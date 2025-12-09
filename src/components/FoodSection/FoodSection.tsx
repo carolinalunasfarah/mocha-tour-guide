@@ -32,6 +32,7 @@ const FoodSection = ({
         imgUrl,
         rating,
         location: new GeoPoint(data.latitude, data.longitude),
+        nameLowercase: data.nameLowercase,
       });
     },
     [createFoodMutation, otherEntityExists],

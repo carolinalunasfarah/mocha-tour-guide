@@ -32,6 +32,7 @@ const MochaSection = ({
         imgUrl,
         rating,
         location: new GeoPoint(data.latitude, data.longitude),
+        nameLowercase: data.nameLowercase,
       });
     },
     [createMochaMutation, otherEntityExists],

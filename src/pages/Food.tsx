@@ -1,16 +1,17 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useGetFood } from "@/modules/food/hooks/useGetFood";
 import type { PaginatedFoodResult } from "@/modules/food/services/getFood/types";
-import type { InfiniteData } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/Button";
 import { LocationCard } from "@/components/LocationCard";
 import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { StateComponent } from "@/components/StateComponent";
+import { SearchBar } from "@/components/SearchBar";
 
 const Food = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const {
     data,
     fetchNextPage,
@@ -18,8 +19,7 @@ const Food = () => {
     isFetchingNextPage,
     isLoading,
     isError,
-    refetch,
-  } = useGetFood();
+  } = useGetFood(searchQuery);
   const navigate = useNavigate();
 
   const allFood = useMemo(() => {
@@ -27,12 +27,7 @@ const Food = () => {
       return [];
     }
 
-    if (Array.isArray(data)) {
-      return data.flatMap((page) => page.food);
-    }
-
     const pages = (data as { pages?: PaginatedFoodResult[] }).pages ?? [];
-
     return pages.flatMap((page) => page.food);
   }, [data]);
 
@@ -68,39 +63,58 @@ const Food = () => {
   return (
     <div className="min-h-screen pt-24 pb-12 md:px-8">
       <div className="px-4">
-        <h1 className="text-2xl md:text-3xl font-bold mb-8 text-foreground cursor-default">
-          Repostería recomendada
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {allFood.map((food) => (
-            <LocationCard
-              key={food.id}
-              id={food.id}
-              name={food.name}
-              address={food.address}
-              imgUrl={food.imgUrl}
-              domain="reposteria"
-              rating={food.rating}
-            />
-          ))}
-          {isFetchingNextPage &&
-            Array.from({ length: 8 }).map((_, index) => (
-              <LocationCardSkeleton key={`loading-more-${index}`} />
-            ))}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+          <h1 className="text-2xl md:text-3xl md:mb-0 mb-4 font-bold text-foreground cursor-default">
+            Repostería recomendada
+          </h1>
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Buscar repostería por nombre..."
+          />
         </div>
-        <div className="flex justify-center mt-8 min-h-[60px]">
-          {hasNextPage && (
-            <Button
-              onClick={() => fetchNextPage()}
-              disabled={isFetchingNextPage}
-              size="lg"
-            >
-              {isFetchingNextPage
-                ? "Cargando más repostería..."
-                : "Cargar más repostería"}
-            </Button>
-          )}
-        </div>
+        {allFood.length === 0 ? (
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="text-muted-foreground text-lg cursor-default">
+              {searchQuery
+                ? "No hay resultados con esta búsqueda"
+                : "No hay repostería recomendada aún"}
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {allFood.map((food) => (
+                <LocationCard
+                  key={food.id}
+                  id={food.id}
+                  name={food.name}
+                  address={food.address}
+                  imgUrl={food.imgUrl}
+                  domain="reposteria"
+                  rating={food.rating}
+                />
+              ))}
+              {isFetchingNextPage &&
+                Array.from({ length: 8 }).map((_, index) => (
+                  <LocationCardSkeleton key={`loading-more-${index}`} />
+                ))}
+            </div>
+            <div className="flex justify-center mt-8 min-h-[60px]">
+              {hasNextPage && (
+                <Button
+                  onClick={() => fetchNextPage()}
+                  disabled={isFetchingNextPage}
+                  size="lg"
+                >
+                  {isFetchingNextPage
+                    ? "Cargando más repostería..."
+                    : "Cargar más repostería"}
+                </Button>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

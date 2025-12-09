@@ -3,17 +3,17 @@ import { getMochas } from "@/modules/mochas/services/getMochas";
 import { PaginatedMochaResult } from "@/modules/mochas/services/getMochas/types";
 import { QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
 
-const useGetMochas = () => {
+const useGetMochas = (searchQuery?: string) => {
   return useInfiniteQuery<
     PaginatedMochaResult,
     Error,
     PaginatedMochaResult[],
-    string[],
+    (string | undefined)[],
     QueryDocumentSnapshot<DocumentData> | null
   >({
-    queryKey: ["mochas"],
+    queryKey: ["mochas", searchQuery],
     queryFn: async ({ pageParam }) => {
-      return getMochas(pageParam);
+      return getMochas(pageParam, searchQuery);
     },
     initialPageParam: null,
     getNextPageParam: (lastPage) => {
