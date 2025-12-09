@@ -9,27 +9,37 @@ import {
   type DocumentData,
   type QueryDocumentSnapshot,
   type QueryConstraint,
+  where,
 } from "firebase/firestore";
-
-import type { Food } from "@/modules/food/domain/types";
-
+import { Food } from "@/modules/food/domain/types";
 import { FETCH_LIMIT, PaginatedFoodResult } from "./types";
 
 const getFood = async (
   lastDoc?: QueryDocumentSnapshot<DocumentData> | null,
+  searchQuery?: string,
 ): Promise<PaginatedFoodResult> => {
   const foodRef = collection(firestore, "food");
-  const constraints: QueryConstraint[] = [
-    orderBy("rating", "desc"),
-    limit(FETCH_LIMIT),
-  ];
+  const queryConstraints: QueryConstraint[] = [];
 
-  if (lastDoc) {
-    constraints.push(startAfter(lastDoc));
+  if (searchQuery) {
+    const lowerCaseSearchQuery = searchQuery.toLowerCase();
+    queryConstraints.push(where("nameLowercase", ">=", lowerCaseSearchQuery));
+    queryConstraints.push(
+      where("nameLowercase", "<=", lowerCaseSearchQuery + "\uf8ff"),
+    );
+    queryConstraints.push(orderBy("nameLowercase", "asc"));
+  } else {
+    queryConstraints.push(orderBy("rating", "desc"));
   }
 
-  const snapshot = await getDocs(query(foodRef, ...constraints));
+  if (lastDoc) {
+    queryConstraints.push(startAfter(lastDoc));
+  }
+  queryConstraints.push(limit(FETCH_LIMIT));
 
+  const q = query(foodRef, ...queryConstraints);
+
+  const snapshot = await getDocs(q);
   const food = snapshot.docs.map((doc) => {
     const data = doc.data() as Food;
     return { id: doc.id, ...data };
