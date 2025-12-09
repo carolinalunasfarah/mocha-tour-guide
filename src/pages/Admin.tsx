@@ -16,8 +16,8 @@ const Admin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-16 pb-12 px-4">
-      <div className="container mx-auto max-w-4xl">
+    <div className="min-h-screen bg-background pt-24 pb-12 px-4">
+      <div className="container mx-auto">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl md:text-3xl font-bold text-primary cursor-default">
             Panel de Administración
