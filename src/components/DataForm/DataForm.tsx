@@ -33,12 +33,15 @@ const DataForm = () => {
 
   const createMocha = form.watch("createMocha");
   const createFood = form.watch("createFood");
+  const createVisited = form.watch("createVisited");
   const name = form.watch("name");
   const nameLowercase = form.watch("nameLowercase");
   const rating = form.watch("rating");
   const mochaRatingField = form.watch("mochaRating");
 
   const mochaRating = createMocha && createFood ? mochaRatingField : rating;
+  // Si hay mocha, usar su rating; si no, usar el rating general
+  const visitedRating = createMocha ? mochaRating : rating;
 
   useEffect(() => {
     if (name) {
@@ -77,7 +80,10 @@ const DataForm = () => {
       );
     }
 
-    if (data.createMocha && visitedHandleSubmitRef.current) {
+    if (
+      (data.createVisited || data.createMocha) &&
+      visitedHandleSubmitRef.current
+    ) {
       promises.push(
         visitedHandleSubmitRef.current(data).then(() => {
           messages.push("Visited");
@@ -134,7 +140,7 @@ const DataForm = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormCheckboxes register={form.register} />
 
-          {(createMocha || createFood) && (
+          {(createMocha || createFood || createVisited) && (
             <FormCommonFields
               register={form.register}
               errors={form.formState.errors}
@@ -142,23 +148,27 @@ const DataForm = () => {
           )}
 
           {createMocha && (
-            <>
-              <MochaSection
-                register={form.register}
-                errors={form.formState.errors}
-                otherEntityExists={createFood}
-                onSubmitReady={(handleSubmit) => {
-                  mochaHandleSubmitRef.current = handleSubmit;
-                }}
-              />
-              <VisitedSection
-                rating={mochaRating}
-                nameLowercase={nameLowercase}
-                onSubmitReady={(handleSubmit) => {
-                  visitedHandleSubmitRef.current = handleSubmit;
-                }}
-              />
-            </>
+            <MochaSection
+              register={form.register}
+              errors={form.formState.errors}
+              otherEntityExists={createFood}
+              onSubmitReady={(handleSubmit) => {
+                mochaHandleSubmitRef.current = handleSubmit;
+              }}
+            />
+          )}
+
+          {(createVisited || createMocha) && (
+            <VisitedSection
+              rating={visitedRating}
+              nameLowercase={nameLowercase}
+              isMochaActive={createMocha}
+              register={form.register}
+              errors={form.formState.errors}
+              onSubmitReady={(handleSubmit) => {
+                visitedHandleSubmitRef.current = handleSubmit;
+              }}
+            />
           )}
 
           {createFood && (
