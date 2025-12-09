@@ -4,16 +4,16 @@ import { getFood } from "@/modules/food/services/getFood";
 import type { PaginatedFoodResult } from "@/modules/food/services/getFood/types";
 import type { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 
-const useGetFood = () => {
+const useGetFood = (searchQuery?: string) => {
   return useInfiniteQuery<
     PaginatedFoodResult,
     Error,
     PaginatedFoodResult[],
-    string[],
+    (string | undefined)[],
     QueryDocumentSnapshot<DocumentData> | null
   >({
-    queryKey: ["food"],
-    queryFn: ({ pageParam }) => getFood(pageParam),
+    queryKey: ["food", searchQuery],
+    queryFn: ({ pageParam }) => getFood(pageParam, searchQuery),
     initialPageParam: null,
     getNextPageParam: (lastPage) =>
       lastPage.hasMore ? lastPage.lastVisible : undefined,

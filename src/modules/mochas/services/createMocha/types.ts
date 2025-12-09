@@ -1,13 +1,5 @@
-import { GeoPoint } from "firebase/firestore";
+import { Mocha } from "@/modules/mochas/domain/types";
 
-type CreateMochaRequest = {
-  name: string;
-  address: string;
-  description: string;
-  imgUrl: string;
-  rating: number;
-  location: GeoPoint;
-  nameLowercase: string;
-};
+type CreateMochaRequest = Omit<Mocha, "id" | "createdAt">;
 
 export type { CreateMochaRequest };
