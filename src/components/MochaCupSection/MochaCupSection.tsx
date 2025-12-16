@@ -45,12 +45,8 @@ const MochaCupSection: React.FC = () => {
       });
 
       // Hide labels and guide lines initially
-      gsap.set(".label-line", {
-        opacity: 0,
-        strokeDasharray: 150,
-        strokeDashoffset: 150,
-      });
-      gsap.set(".label-text", { opacity: 0, x: -20 });
+      gsap.set(".label-line", { opacity: 0 });
+      gsap.set(".label-text", { opacity: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -72,24 +68,8 @@ const MochaCupSection: React.FC = () => {
           strokeDashoffset: 0,
           opacity: 1,
         })
-        .to(
-          ".label-line",
-          {
-            opacity: 1,
-            strokeDashoffset: 0,
-            duration: 0.5,
-          },
-          "-=0.3",
-        )
-        .to(
-          ".label-text",
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.5,
-          },
-          "<",
-        );
+        .to(".label-line", { opacity: 1, duration: 0.5 }, "-=0.3")
+        .to(".label-text", { opacity: 1, duration: 0.5 }, "<");
     }, containerRef);
 
     return () => ctx.revert();
