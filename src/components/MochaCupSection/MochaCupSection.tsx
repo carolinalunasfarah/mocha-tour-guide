@@ -47,8 +47,8 @@ const MochaCupSection: React.FC = () => {
       // Hide labels and guide lines initially
       gsap.set(".label-line", {
         opacity: 0,
-        scaleX: 0,
-        transformOrigin: "left center",
+        strokeDasharray: 150,
+        strokeDashoffset: 150,
       });
       gsap.set(".label-text", { opacity: 0, x: -20 });
 
@@ -76,7 +76,7 @@ const MochaCupSection: React.FC = () => {
           ".label-line",
           {
             opacity: 1,
-            scaleX: 1,
+            strokeDashoffset: 0,
             duration: 0.5,
           },
           "-=0.3",
