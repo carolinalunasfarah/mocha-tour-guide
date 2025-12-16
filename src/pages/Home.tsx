@@ -1,10 +1,10 @@
-import { HeroSection } from "@/components/HeroSection";
 import { DescriptionSection } from "@/components/DescriptionSection";
+import { MochaCupSection } from "@/components/MochaCupSection";
 
 const Home = () => {
   return (
     <div className="min-h-screen">
-      <HeroSection />
+      <MochaCupSection />
 
       <DescriptionSection />
     </div>
