@@ -93,7 +93,7 @@ const MochaCupSection: React.FC = () => {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <div ref={containerRef} className="w-full pt-20">
