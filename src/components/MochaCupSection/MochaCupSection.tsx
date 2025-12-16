@@ -38,11 +38,8 @@ const MochaCupSection: React.FC = () => {
       gsap.set("#chocolate", { y: 80, opacity: 0 });
       gsap.set("#espresso", { y: 140, opacity: 0 });
 
-      gsap.set("#cup-line path", {
-        strokeDasharray: (i, el) => el.getTotalLength(),
-        strokeDashoffset: (i, el) => el.getTotalLength(),
-        opacity: 0,
-      });
+      // ClipPath para revelar el contorno progresivamente
+      gsap.set("#cup-clip-rect", { attr: { y: 480, height: 0 } });
 
       // Hide labels and guide lines initially
       gsap.set(".label-line", { opacity: 0 });
@@ -64,10 +61,7 @@ const MochaCupSection: React.FC = () => {
         .to("#milk", { y: 0, opacity: 1 }, "<")
         .to("#chocolate", { y: 0, opacity: 1 }, "<")
         .to("#espresso", { y: 0, opacity: 1 }, "<")
-        .to("#cup-line path", {
-          strokeDashoffset: 0,
-          opacity: 1,
-        })
+        .to("#cup-clip-rect", { attr: { y: -200, height: 700 } })
         .to(".label-line", { opacity: 1, duration: 0.5 }, "-=0.3")
         .to(".label-text", { opacity: 1, duration: 0.5 }, "<");
     }, containerRef);
