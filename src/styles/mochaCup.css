@@ -1,0 +1,20 @@
+.mocha-cup-svg {
+  overflow: visible;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.label-line {
+  stroke: hsl(var(--accent));
+  stroke-width: 1.5;
+  stroke-dasharray: 4, 4;
+}
+
+.label-text {
+  fill: hsl(var(--accent));
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-anchor: start;
+  cursor: default;
+}
