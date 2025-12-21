@@ -6,6 +6,7 @@ type PaginatedMochaResult = {
   mochas: Mocha[];
   lastVisible: QueryDocumentSnapshot<DocumentData> | null;
   hasMore: boolean;
+  total?: number;
 };
 
 const FETCH_LIMIT = 8;

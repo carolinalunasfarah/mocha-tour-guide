@@ -31,6 +31,15 @@ const Mochas = () => {
     return pages.flatMap((page) => page.mochas);
   }, [data]);
 
+  const totalMochas = useMemo(() => {
+    if (!data) {
+      return 0;
+    }
+
+    const pages = (data as { pages?: PaginatedMochaResult[] }).pages ?? [];
+    return pages[0]?.total ?? allMochas.length;
+  }, [data, allMochas.length]);
+
   // If there's an error during any fetch, show the error state
   if (isError) {
     return (
@@ -66,7 +75,7 @@ const Mochas = () => {
       <div className="px-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <h1 className="text-2xl md:text-3xl md:mb-0 mb-4 font-bold text-foreground cursor-default">
-            Mochas recomendados
+            Mochas recomendados ({totalMochas})
           </h1>
           <SearchBar
             value={searchQuery}
