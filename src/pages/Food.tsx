@@ -31,6 +31,15 @@ const Food = () => {
     return pages.flatMap((page) => page.food);
   }, [data]);
 
+  const totalFood = useMemo(() => {
+    if (!data) {
+      return 0;
+    }
+
+    const pages = (data as { pages?: PaginatedFoodResult[] }).pages ?? [];
+    return pages[0]?.total ?? allFood.length;
+  }, [data, allFood.length]);
+
   if (isError) {
     return (
       <StateComponent
@@ -65,7 +74,7 @@ const Food = () => {
       <div className="px-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <h1 className="text-2xl md:text-3xl md:mb-0 mb-4 font-bold text-foreground cursor-default">
-            Repostería recomendada
+            Repostería recomendada ({totalFood})
           </h1>
           <SearchBar
             value={searchQuery}

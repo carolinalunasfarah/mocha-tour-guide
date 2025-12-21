@@ -6,6 +6,7 @@ type PaginatedFoodResult = {
   food: Food[];
   lastVisible: QueryDocumentSnapshot<DocumentData> | null;
   hasMore: boolean;
+  total?: number;
 };
 
 const FETCH_LIMIT = 8;

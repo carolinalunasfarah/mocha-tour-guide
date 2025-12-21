@@ -26,13 +26,16 @@ const SearchBar = ({
   }, [debouncedValue]);
 
   return (
-    <div className="relative w-full lg:w-1/3">
-      <Search className="absolute left-2 top-2.5 size-4 text-primary" />
+    <div className="relative w-full lg:w-1/3 bg-accent rounded-lg">
+      <Search className="absolute left-2 top-2.5 size-4 text-accent-foreground" />
       <Input
         value={localValue}
         onChange={(e) => setLocalValue(e.target.value)}
         placeholder={placeholder}
-        className={cn("pl-8 text-primary", className)}
+        className={cn(
+          "pl-8 text-accent-foreground placeholder:text-accent-foreground",
+          className,
+        )}
       />
     </div>
   );
