@@ -97,7 +97,7 @@ const Mochas = () => {
         ) : (
           <>
             <div className="mb-8">
-              <VisitedMap locations={allMochasData} />
+              <VisitedMap locations={allMochasData || []} />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {allMochas.map((mocha) => (
