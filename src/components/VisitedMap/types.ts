@@ -1,9 +1,15 @@
-import { Visited } from "@/modules/visited/domain/types";
+import { GeoPoint } from "firebase/firestore";
+
+type MappableLocation = {
+  name: string;
+  rating: number;
+  location: GeoPoint;
+};
 
 type VisitedMapProps = {
-  locations: Visited[];
+  locations: MappableLocation[];
   zoom?: number;
   className?: string;
 };
 
-export type { VisitedMapProps };
+export type { MappableLocation, VisitedMapProps };
