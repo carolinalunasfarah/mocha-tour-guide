@@ -12,6 +12,7 @@ const useCreateFood = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["food"] });
+      queryClient.invalidateQueries({ queryKey: ["all-food"] });
     },
   });
   return { data, ...query };
