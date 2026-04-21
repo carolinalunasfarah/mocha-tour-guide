@@ -12,6 +12,7 @@ const useCreateMocha = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["mochas"] });
+      queryClient.invalidateQueries({ queryKey: ["all-mochas"] });
     },
   });
   return { data, ...query };

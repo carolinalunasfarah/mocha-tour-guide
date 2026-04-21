@@ -2,37 +2,18 @@ import { firestore } from "@/lib/clients/firebase/firebaseConfig";
 import {
   collection,
   getDocs,
-  orderBy,
   query,
   limit,
   startAfter,
   type DocumentData,
   type QueryDocumentSnapshot,
-  where,
-  type QueryConstraint,
   getCountFromServer,
   type CollectionReference,
 } from "firebase/firestore";
 import { PaginatedResult } from "./types";
+import { buildQueryConstraints } from "@/utils/queries/buildQueryConstraints";
 
 const FETCH_LIMIT = 8;
-
-const buildQueryConstraints = (searchQuery?: string): QueryConstraint[] => {
-  const constraints: QueryConstraint[] = [];
-
-  if (searchQuery) {
-    const lowerCaseSearchQuery = searchQuery.toLowerCase();
-    constraints.push(where("nameLowercase", ">=", lowerCaseSearchQuery));
-    constraints.push(
-      where("nameLowercase", "<=", lowerCaseSearchQuery + "\uf8ff"),
-    );
-    constraints.push(orderBy("nameLowercase", "asc"));
-  } else {
-    constraints.push(orderBy("rating", "desc"));
-  }
-
-  return constraints;
-};
 
 const getPaginatedData = async <T extends { id: string }>(
   collectionName: string,
