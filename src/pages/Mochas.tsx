@@ -19,6 +19,7 @@ const Mochas = () => {
     hasNextPage,
     isFetchingNextPage,
     isLoading,
+    isFetching,
     isError,
   } = useGetMochas(searchQuery);
   const { data: allMochasData } = useGetAllMochas(searchQuery);
@@ -56,29 +57,14 @@ const Mochas = () => {
     );
   }
 
-  if (isLoading && allMochas.length === 0) {
-    return (
-      <div className="min-h-screen pt-24 pb-12 md:px-8">
-        <div className="px-4">
-          <h1 className="text-2xl md:text-3xl font-bold mb-8 text-foreground cursor-default">
-            Mochas recomendados
-          </h1>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <LocationCardSkeleton key={index} />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const isLoadingContent = (isFetching || isLoading) && !isFetchingNextPage;
 
   return (
     <div className="min-h-screen pt-24 pb-12 md:px-8">
       <div className="px-4">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <h1 className="text-2xl md:text-3xl md:mb-0 mb-4 font-bold text-foreground cursor-default">
-            Mochas recomendados ({totalMochas})
+            Mochas recomendados{!isLoadingContent && ` (${totalMochas})`}
           </h1>
           <SearchBar
             value={searchQuery}
@@ -86,7 +72,16 @@ const Mochas = () => {
             placeholder="Buscar mocha por nombre..."
           />
         </div>
-        {allMochas.length === 0 ? (
+        {isLoadingContent ? (
+          <>
+            <div className="mb-8 w-full h-[450px] rounded-lg bg-muted animate-pulse" />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <LocationCardSkeleton key={index} />
+              ))}
+            </div>
+          </>
+        ) : allMochas.length === 0 ? (
           <div className="flex justify-center items-center min-h-[400px]">
             <div className="text-muted-foreground text-lg cursor-default">
               {searchQuery
