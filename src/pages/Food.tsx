@@ -9,6 +9,8 @@ import { LocationCard } from "@/components/LocationCard";
 import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { StateComponent } from "@/components/StateComponent";
 import { SearchBar } from "@/components/SearchBar";
+import { useGetAllFood } from "@/modules/food/hooks/useGetAllFood";
+import { VisitedMap } from "@/components/VisitedMap";
 
 const Food = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,6 +22,7 @@ const Food = () => {
     isLoading,
     isError,
   } = useGetFood(searchQuery);
+  const { data: allFoodData } = useGetAllFood(searchQuery);
   const navigate = useNavigate();
 
   const allFood = useMemo(() => {
@@ -92,6 +95,9 @@ const Food = () => {
           </div>
         ) : (
           <>
+            <div className="mb-8">
+              <VisitedMap locations={allFoodData || []} />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {allFood.map((food) => (
                 <LocationCard

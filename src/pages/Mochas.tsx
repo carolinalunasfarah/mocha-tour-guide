@@ -8,6 +8,8 @@ import { LocationCard } from "@/components/LocationCard";
 import { LocationCardSkeleton } from "@/components/LocationCardSkeleton";
 import { StateComponent } from "@/components/StateComponent";
 import { SearchBar } from "@/components/SearchBar";
+import { VisitedMap } from "@/components/VisitedMap";
+import { useGetAllMochas } from "@/modules/mochas/hooks/useGetAllMochas";
 
 const Mochas = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,6 +21,7 @@ const Mochas = () => {
     isLoading,
     isError,
   } = useGetMochas(searchQuery);
+  const { data: allMochasData } = useGetAllMochas(searchQuery);
 
   const navigate = useNavigate();
 
@@ -93,6 +96,9 @@ const Mochas = () => {
           </div>
         ) : (
           <>
+            <div className="mb-8">
+              <VisitedMap locations={allMochasData} />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               {allMochas.map((mocha) => (
                 <LocationCard
